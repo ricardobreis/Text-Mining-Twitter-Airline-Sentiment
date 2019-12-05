@@ -124,8 +124,8 @@ ggplot(contagem_palavra_sentimento, aes(x = word2, y = n, fill = sentiment)) +
   facet_wrap(~ sentiment, scales = "free_y") +
   coord_flip() +
     labs(
-      title = "Contagem de Palavras por Sentimento",
-      subtitle = "Contagem de Palavras",
+      title = "Contagem de Palavras",
+      subtitle = "Contagem de Palavras por Sentimento",
       x = "Palavras",
       y = "Contagem"
     )
@@ -145,8 +145,8 @@ ggplot(contagem_sentimento_airline, aes(x = word2, y = n, fill = sentiment)) +
   facet_wrap(~ airline, scales = "free_y") +
   coord_flip() +
   labs(
-    title = "Contagem de Palavras por Sentimento",
-    subtitle = "Contagem de Palavras",
+    title = "Contagem de Palavras",
+    subtitle = "Contagem de Palavras  por Sentimento por Companhia",
     x = "Palavras",
     y = "Contagem"
   )
