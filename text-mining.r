@@ -141,7 +141,7 @@ contagem_sentimento_airline <- sentiment_tweets %>%
 
 # Plot de contagem de palavras por sentimento por companhia
 ggplot(contagem_sentimento_airline, aes(x = word2, y = n, fill = sentiment)) +
-  geom_col(show.legend = FALSE) +
+  geom_col() +
   facet_wrap(~ airline, scales = "free_y") +
   coord_flip() +
   labs(
