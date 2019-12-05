@@ -9,7 +9,6 @@
 ################################################################################################
 
 
-
 # Carrega Pacotes ---------------------------------------------------------
 
 library(tidytext)
@@ -35,38 +34,69 @@ custom_stop_words <- tribble(
   ~word, ~lexicon,
   "http", "CUSTOM",
   "win", "CUSTOM",
-  "t.co", "CUSTOM"
+  "t.co", "CUSTOM",
+  "2", "CUSTOM",
+  "americanair", "CUSTOM",
+  "aa", "CUSTOM",
+  "â", "CUSTOM",
+  "southwestair", "CUSTOM",
+  "united", "CUSTOM",
+  "usairways", "CUSTOM",
+  "virginamerica", "CUSTOM"
 )
 
 stop_words2 <- stop_words %>% 
   rbind(custom_stop_words)
 
+# Tokenizar e remover stop words
 tidy_tweets <- tweets %>%
   unnest_tokens(word, text) %>%
   anti_join(stop_words2)
 
+# Contar palavras
 contagem <- tidy_tweets %>%
   count(word) %>%
   arrange(desc(n)) %>%
   top_n(10, n) %>%
   mutate(word2 = fct_reorder(word, n))
 
+# Plotar contagem de palavras
 ggplot(contagem, aes(x = word2, n)) +
   geom_col() +
   coord_flip() +
   labs(
     title = "Contagem de Palavras",
-    subtitle = "Contagem de Palavras",
+    subtitle = "Contagem de Palavras Geral",
+    x = "Palavras",
+    y = "Contagem"
+  )
+
+# Contar palavras por companhia
+contagem_airline <- tidy_tweets %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  top_n(10, n) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+ggplot(contagem_airline, aes(x = word, y = n, fill = airline)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ airline, scales = "free_y") +
+  coord_flip() +
+  labs(
+    title = "Contagem de Palavras",
+    subtitle = "Contagem de Palavras por Companhia",
     x = "Palavras",
     y = "Contagem"
   )
   
-  # Criando nuvem de palavras
-  wordcloud(
-    word = contagem$word, 
-    freq = contagem$n,
-    max.words = 30
-  )
+# Criando nuvem de palavras
+wordcloud(
+  word = contagem$word, 
+  freq = contagem$n,
+  max.words = 10
+)
 
 
 # Análise de Sentimentos --------------------------------------------------
@@ -88,10 +118,9 @@ contagem_palavra_sentimento <- sentiment_tweets %>%
   ungroup() %>% 
   mutate(word2 = fct_reorder(word, n))
 
+# Plot de contagem de palavras por sentimento
 ggplot(contagem_palavra_sentimento, aes(x = word2, y = n, fill = sentiment)) +
-  # Don't include the lengend for the column plot
   geom_col(show.legend = FALSE) +
-  # Facet by whether or not its a complaint and make the y-axis free
   facet_wrap(~ sentiment, scales = "free_y") +
   coord_flip() +
     labs(
@@ -100,3 +129,24 @@ ggplot(contagem_palavra_sentimento, aes(x = word2, y = n, fill = sentiment)) +
       x = "Palavras",
       y = "Contagem"
     )
+
+# Contar palavras por sentimento por companhia
+contagem_sentimento_airline <- sentiment_tweets %>%
+  count(word, sentiment, airline) %>%
+  group_by(sentiment, airline) %>%
+  arrange(desc(n)) %>%
+  top_n(10, n) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Plot de contagem de palavras por sentimento por companhia
+ggplot(contagem_sentimento_airline, aes(x = word2, y = n, fill = sentiment)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ airline, scales = "free_y") +
+  coord_flip() +
+  labs(
+    title = "Contagem de Palavras por Sentimento",
+    subtitle = "Contagem de Palavras",
+    x = "Palavras",
+    y = "Contagem"
+  )
