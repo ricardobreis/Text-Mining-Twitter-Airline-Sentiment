@@ -15,13 +15,16 @@ library(tidytext)
 library(dplyr)
 library(ggplot2)
 library(wordcloud)
+library(forcats)
+library(tm)
+library(sna)
 
 
 # Leitura do Dados --------------------------------------------------------
 
 path <- "C:/Users/Ricardo/Documents/R-Projetos/TwitterAirlineSentiment/"
 
-tweets <- read.csv(paste(path,"tweets.csv",sep=""), sep=",",header = T,stringsAsFactors = F)
+tweets <- read.csv(paste(path,"tweets.csv",sep=""), sep=",",header = T,stringsAsFactors = F)[,c(1,6,8,10,11,13,15)]
 
 # Typecast dos tweets para character
 tweets$text <- as.character(tweets$text)
@@ -130,23 +133,46 @@ ggplot(contagem_palavra_sentimento, aes(x = word2, y = n, fill = sentiment)) +
       y = "Contagem"
     )
 
-# Contar palavras por sentimento por companhia
-contagem_sentimento_airline <- sentiment_tweets %>%
-  count(word, sentiment, airline) %>%
-  group_by(sentiment, airline) %>%
+# Contar palavras por sentimento positivo por companhia
+contagem_sentimento_positivo_airline <- sentiment_tweets %>%
+  filter(sentiment == "positive") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
   arrange(desc(n)) %>%
   top_n(10, n) %>%
   ungroup() %>% 
   mutate(word2 = fct_reorder(word, n))
 
-# Plot de contagem de palavras por sentimento por companhia
-ggplot(contagem_sentimento_airline, aes(x = word2, y = n, fill = sentiment)) +
-  geom_col() +
+# Plot de contagem de palavras de sentimento positivo por companhia
+ggplot(contagem_sentimento_positivo_airline, aes(x = word2, y = n, fill = airline)) +
+  geom_col(show.legend = FALSE) +
   facet_wrap(~ airline, scales = "free_y") +
   coord_flip() +
   labs(
     title = "Contagem de Palavras",
-    subtitle = "Contagem de Palavras  por Sentimento por Companhia",
+    subtitle = "Contagem de Palavras de Sentimento Positivo por Companhia",
+    x = "Palavras",
+    y = "Contagem"
+  )
+
+# Contar palavras por sentimento negativo por companhia
+contagem_sentimento_negativo_airline <- sentiment_tweets %>%
+  filter(sentiment == "negative") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  top_n(10, n) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Plot de contagem de palavras de sentimento negativo por companhia
+ggplot(contagem_sentimento_negativo_airline, aes(x = word2, y = n, fill = airline)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ airline, scales = "free_y") +
+  coord_flip() +
+  labs(
+    title = "Contagem de Palavras",
+    subtitle = "Contagem de Palavras de Sentimento Negativo por Companhia",
     x = "Palavras",
     y = "Contagem"
   )
