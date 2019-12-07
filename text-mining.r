@@ -19,6 +19,7 @@ library(forcats)
 library(tm)
 library(sna)
 library(igraph)
+library(stringr)
 
 
 # Leitura do Dados --------------------------------------------------------
@@ -29,6 +30,7 @@ tweets <- read.csv(paste(path,"tweets.csv",sep=""), sep=",",header = T,stringsAs
 
 # Typecast dos tweets para character
 tweets$text <- as.character(tweets$text)
+tweets$tweet_created <-  as.Date(tweets$tweet_created)
 
 # Contar de tweets por airline
 contagem_tweets_airline <- tweets %>%
@@ -132,6 +134,42 @@ sentiment_tweets <- tidy_tweets %>%
 contagem_sentimento <- sentiment_tweets %>% 
   count(sentiment) %>% 
   arrange(desc(n))
+
+# Contagem de sentimento negativo por dia
+contagem_sentimento_negativo_dia <- sentiment_tweets %>%
+  filter(sentiment == "negative") %>%
+  group_by(tweet_created) %>%
+  count(tweet_created)
+
+# Plot de sentimento negativo por dia
+ggplot(contagem_sentimento_negativo_dia, aes(tweet_created, n)) + geom_line() 
+
+# Contagem de sentimento positivo por dia
+contagem_sentimento_positivo_dia <- sentiment_tweets %>%
+  filter(sentiment == "positive") %>%
+  group_by(tweet_created) %>%
+  count(tweet_created)
+
+# Plot de sentimento positivo por dia
+ggplot(contagem_sentimento_positivo_dia, aes(tweet_created, n)) + geom_line()
+
+# Contagem de sentimento negativo por dia por companhia
+contagem_sentimento_negativo_dia_airline <- sentiment_tweets %>%
+  filter(sentiment == "negative") %>%
+  group_by(airline, tweet_created) %>%
+  count(tweet_created)
+
+# Plot de sentimento negativo por dia por companhia
+ggplot(contagem_sentimento_negativo_dia_airline, aes(tweet_created, n, color=airline)) + geom_line() 
+
+# Contagem de sentimento positivo por dia por companhia
+contagem_sentimento_positivo_dia_airline <- sentiment_tweets %>%
+  filter(sentiment == "positive") %>%
+  group_by(airline, tweet_created) %>%
+  count(tweet_created)
+
+# Plot de sentimento negativo por dia por companhia
+ggplot(contagem_sentimento_positivo_dia_airline, aes(tweet_created, n, color=airline)) + geom_line() 
 
 # Contagem de sentimentos por companhia
 contagem_sentimento <- sentiment_tweets %>% 
