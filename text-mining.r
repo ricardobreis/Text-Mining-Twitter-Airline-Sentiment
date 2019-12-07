@@ -142,7 +142,14 @@ contagem_sentimento_negativo_dia <- sentiment_tweets %>%
   count(tweet_created)
 
 # Plot de sentimento negativo por dia
-ggplot(contagem_sentimento_negativo_dia, aes(tweet_created, n)) + geom_line() 
+ggplot(contagem_sentimento_negativo_dia, aes(tweet_created, n)) +
+  geom_line() +
+  labs(
+    title = "Contagem de Sentimentos Negativos",
+    subtitle = "Contagem de Sentimentos Negativos por Dia",
+    x = "Dias",
+    y = "Contagem"
+  )
 
 # Contagem de sentimento positivo por dia
 contagem_sentimento_positivo_dia <- sentiment_tweets %>%
@@ -151,7 +158,14 @@ contagem_sentimento_positivo_dia <- sentiment_tweets %>%
   count(tweet_created)
 
 # Plot de sentimento positivo por dia
-ggplot(contagem_sentimento_positivo_dia, aes(tweet_created, n)) + geom_line()
+ggplot(contagem_sentimento_positivo_dia, aes(tweet_created, n)) +
+  geom_line()  +
+  labs(
+    title = "Contagem de Sentimentos Positivos",
+    subtitle = "Contagem de Sentimentos Positivos por Dia",
+    x = "Dias",
+    y = "Contagem"
+  )
 
 # Contagem de sentimento negativo por dia por companhia
 contagem_sentimento_negativo_dia_airline <- sentiment_tweets %>%
@@ -160,7 +174,14 @@ contagem_sentimento_negativo_dia_airline <- sentiment_tweets %>%
   count(tweet_created)
 
 # Plot de sentimento negativo por dia por companhia
-ggplot(contagem_sentimento_negativo_dia_airline, aes(tweet_created, n, color=airline)) + geom_line() 
+ggplot(contagem_sentimento_negativo_dia_airline, aes(tweet_created, n, color=airline)) +
+  geom_line() +
+  labs(
+    title = "Contagem de Sentimentos Negativos",
+    subtitle = "Contagem de Sentimentos Negativos por Dia por Companhia",
+    x = "Dias",
+    y = "Contagem"
+  )
 
 # Contagem de sentimento positivo por dia por companhia
 contagem_sentimento_positivo_dia_airline <- sentiment_tweets %>%
@@ -169,7 +190,14 @@ contagem_sentimento_positivo_dia_airline <- sentiment_tweets %>%
   count(tweet_created)
 
 # Plot de sentimento negativo por dia por companhia
-ggplot(contagem_sentimento_positivo_dia_airline, aes(tweet_created, n, color=airline)) + geom_line() 
+ggplot(contagem_sentimento_positivo_dia_airline, aes(tweet_created, n, color=airline)) +
+  geom_line() +
+  labs(
+    title = "Contagem de Sentimentos Positivos",
+    subtitle = "Contagem de Sentimentos Positivos por Dia por Companhia",
+    x = "Dias",
+    y = "Contagem"
+  )
 
 # Contagem de sentimentos por companhia
 contagem_sentimento <- sentiment_tweets %>% 
@@ -177,7 +205,8 @@ contagem_sentimento <- sentiment_tweets %>%
   arrange(desc(n))
 
 # Plot de sentimento por companhia
-ggplot(sentiment_tweets, aes(sentiment_tweets$airline, fill=sentiment)) + geom_bar()
+ggplot(sentiment_tweets, aes(sentiment_tweets$airline, fill=sentiment)) +
+  geom_bar()
 
 # Contagem de palavras por sentimento
 contagem_palavra_sentimento <- sentiment_tweets %>% 
