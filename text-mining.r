@@ -26,7 +26,19 @@ library(stringr)
 
 path <- "C:/Users/Ricardo/Documents/R-Projetos/TwitterAirlineSentiment/"
 
-tweets <- read.csv(paste(path,"tweets.csv",sep=""), sep=",",header = T,stringsAsFactors = F)[,c(1,6,8,10,11,13,15)]
+tweets <- read.csv(paste(path,"tweets.csv",sep=""), sep=",",header = T,stringsAsFactors = T)[,c(1,6,8,10,11,13,15)]
+
+# tweets$airline2 <- ifelse(str_detect(tweets$text, "Virgin America|virgin|Virgin|VirginAmerica|virginamerica"), "Virgin America", tweets$airline2)
+# tweets$airline2 <- ifelse(str_detect(tweets$text, "US Airways|usairways|USAirways"), "US Airways", tweets$airline2)
+# tweets$airline2 <- ifelse(str_detect(tweets$text, "United|united"), "United", tweets$airline2)
+# tweets$airline2 <- ifelse(str_detect(tweets$text, "Southwest|southwest"), "Southwest", tweets$airline2)
+# tweets$airline2 <- ifelse(str_detect(tweets$text, "Delta|delta|deltaairlines|DeltaAirlines|Delta Airlines"), "Delta", tweets$airline2)
+# tweets$airline2 <- ifelse(str_detect(tweets$text, "American|american"), "American", tweets$airline2)
+
+
+# Análise Exploratória ----------------------------------------------------
+
+summary(tweets)
 
 # Typecast dos tweets para character
 tweets$text <- as.character(tweets$text)
@@ -36,7 +48,7 @@ tweets$tweet_created <-  as.Date(tweets$tweet_created)
 contagem_tweets_airline <- tweets %>%
   count(airline)
 
-# Plotar contagem de palavras
+# Plotar tweets por airline
 ggplot(contagem_tweets_airline, aes(x = airline, n)) +
   geom_col() +
   coord_flip() +
@@ -45,6 +57,52 @@ ggplot(contagem_tweets_airline, aes(x = airline, n)) +
     subtitle = "Total de Tweets por Companhia",
     x = "Companhias",
     y = "Tweets"
+  )
+
+# Contar de tweets por timezone
+contagem_tweets_timezone <- tweets %>%
+  count(user_timezone) %>%
+  filter(n > 10)
+
+# Plotar contagem de tweets por timezone
+ggplot(contagem_tweets_timezone, aes(x = user_timezone, n)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Tweets por Timezone",
+    subtitle = "Total de Tweets por Timezone",
+    x = "Companhias",
+    y = "Tweets"
+  )
+
+# Contagem tweets por dia
+contagem_tweets_dia <- tweets %>%
+  group_by(tweet_created) %>%
+  count(tweet_created)
+
+# Plot de tweets por dia
+ggplot(contagem_tweets_dia, aes(tweet_created, n)) +
+  geom_line() +
+  labs(
+    title = "Contagem de Tweets",
+    subtitle = "Contagem de Tweets por Dia",
+    x = "Dias",
+    y = "Contagem"
+  )
+
+# Contagem tweets por dia por airline
+contagem_tweets_dia_airline <- tweets %>%
+  group_by(airline, tweet_created) %>%
+  count(tweet_created)
+
+# Plot de tweets por dia por airline
+ggplot(contagem_tweets_dia_airline, aes(tweet_created, n, color = airline)) +
+  geom_line() +
+  labs(
+    title = "Contagem de Tweets",
+    subtitle = "Contagem de Tweets por Dia por Companhia",
+    x = "Dias",
+    y = "Contagem"
   )
 
 
