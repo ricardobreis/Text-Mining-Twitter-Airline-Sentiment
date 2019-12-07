@@ -28,13 +28,6 @@ path <- "C:/Users/Ricardo/Documents/R-Projetos/TwitterAirlineSentiment/"
 
 tweets <- read.csv(paste(path,"tweets.csv",sep=""), sep=",",header = T,stringsAsFactors = T)[,c(1,6,8,10,11,13,15)]
 
-# tweets$airline2 <- ifelse(str_detect(tweets$text, "Virgin America|virgin|Virgin|VirginAmerica|virginamerica"), "Virgin America", tweets$airline2)
-# tweets$airline2 <- ifelse(str_detect(tweets$text, "US Airways|usairways|USAirways"), "US Airways", tweets$airline2)
-# tweets$airline2 <- ifelse(str_detect(tweets$text, "United|united"), "United", tweets$airline2)
-# tweets$airline2 <- ifelse(str_detect(tweets$text, "Southwest|southwest"), "Southwest", tweets$airline2)
-# tweets$airline2 <- ifelse(str_detect(tweets$text, "Delta|delta|deltaairlines|DeltaAirlines|Delta Airlines"), "Delta", tweets$airline2)
-# tweets$airline2 <- ifelse(str_detect(tweets$text, "American|american"), "American", tweets$airline2)
-
 
 # Análise Exploratória ----------------------------------------------------
 
@@ -534,4 +527,73 @@ wordcloud(
   freq = contagem_sentimento_negativo_american_nuvem$n,
   max.words = 50
 )
+
+
+# Análise de Rede ---------------------------------------------------------
+
+# SYDNEY
+# Cria o DTM filtrando por uma timezone
+dtm_tweets <- tweets %>%
+  filter(user_timezone == "Sydney") %>% 
+  count(airline, tweet_id) %>% 
+  cast_dtm(tweet_id, airline, n)
+
+# Transforma o DTM em matriz para ter acesso aos valores
+matrix_tweets <- as.matrix(dtm_tweets)
+
+# transforma a matriz em grafo no formato do igraph
+graph <- graph_from_incidence_matrix(t(matrix_tweets))
+
+# Plot da rede
+plot(graph, vertex.size=degree(graph, v = V(graph)), vertex.label.dist=3,
+     vertex.label = ifelse(degree(graph, v = V(graph)) > 1,V(graph)$name,NA), vertex.color="red", layout = layout_nicely(graph) )
+
+# Medidas de centralidade
+degree(graph, v = V(graph)[1:6])
+betweenness(graph, v = V(graph)[1:6])
+closeness(graph, vids = V(graph)[1:6])
+
+# ALASKA
+# Cria o DTM filtrando por uma timezone
+dtm_tweets <- tweets %>%
+  filter(user_timezone == "Alaska") %>% 
+  count(airline, tweet_id) %>% 
+  cast_dtm(tweet_id, airline, n)
+
+# Transforma o DTM em matriz para ter acesso aos valores
+matrix_tweets <- as.matrix(dtm_tweets)
+
+# transforma a matriz em grafo no formato do igraph
+graph <- graph_from_incidence_matrix(t(matrix_tweets))
+
+# Plot da rede
+plot(graph, vertex.size=degree(graph, v = V(graph)), vertex.label.dist=3,
+     vertex.label = ifelse(degree(graph, v = V(graph)) > 1,V(graph)$name,NA), vertex.color="red", layout = layout_nicely(graph) )
+
+# Medidas de centralidade
+degree(graph, v = V(graph)[1:6])
+betweenness(graph, v = V(graph)[1:6])
+closeness(graph, vids = V(graph)[1:6])
+
+# AMSTERDAM
+# Cria o DTM filtrando por uma timezone
+dtm_tweets <- tweets %>%
+  filter(user_timezone == "Amsterdam") %>% 
+  count(airline, tweet_id) %>% 
+  cast_dtm(tweet_id, airline, n)
+
+# Transforma o DTM em matriz para ter acesso aos valores
+matrix_tweets <- as.matrix(dtm_tweets)
+
+# transforma a matriz em grafo no formato do igraph
+graph <- graph_from_incidence_matrix(t(matrix_tweets))
+
+# Plot da rede
+plot(graph, vertex.size=degree(graph, v = V(graph)), vertex.label.dist=3,
+     vertex.label = ifelse(degree(graph, v = V(graph)) > 1,V(graph)$name,NA), vertex.color="red", layout = layout_nicely(graph) )
+
+# Medidas de centralidade
+degree(graph, v = V(graph)[1:6])
+betweenness(graph, v = V(graph)[1:6])
+closeness(graph, vids = V(graph)[1:6])
 
