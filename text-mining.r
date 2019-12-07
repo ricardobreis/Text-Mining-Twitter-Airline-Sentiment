@@ -30,6 +30,21 @@ tweets <- read.csv(paste(path,"tweets.csv",sep=""), sep=",",header = T,stringsAs
 # Typecast dos tweets para character
 tweets$text <- as.character(tweets$text)
 
+# Contar de tweets por airline
+contagem_tweets_airline <- tweets %>%
+  count(airline)
+
+# Plotar contagem de palavras
+ggplot(contagem_tweets_airline, aes(x = airline, n)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Tweets por Companhia",
+    subtitle = "Total de Tweets por Companhia",
+    x = "Companhias",
+    y = "Tweets"
+  )
+
 
 # Tokenização e Remoção de Stop Words -------------------------------------
 
@@ -95,11 +110,16 @@ ggplot(contagem_airline, aes(x = word, y = n, fill = airline)) +
     y = "Contagem"
   )
   
+contagem_nuvem <- tidy_tweets %>%
+  count(word) %>%
+  arrange(desc(n)) %>%
+  mutate(word2 = fct_reorder(word, n))
+
 # Criando nuvem de palavras
 wordcloud(
-  word = contagem$word, 
-  freq = contagem$n,
-  max.words = 10
+  word = contagem_nuvem$word, 
+  freq = contagem_nuvem$n,
+  max.words = 50
 )
 
 
@@ -164,11 +184,106 @@ ggplot(contagem_sentimento_positivo_airline, aes(x = word2, y = n, fill = airlin
     y = "Contagem"
   )
 
+# VIRGIN AMERICA
+# Contar palavras por sentimento positivo por companhia
+contagem_sentimento_positivo_virgin_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "positive" & airline == "Virgin America") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
 # Nuvem de palavras de sentimento positivo por companhia
 wordcloud(
-  word = contagem_sentimento_positivo_airline$word, 
-  freq = contagem_sentimento_positivo_airline$n,
-  max.words = 100
+  word = contagem_sentimento_positivo_virgin_nuvem$word, 
+  freq = contagem_sentimento_positivo_virgin_nuvem$n,
+  max.words = 50
+)
+
+# UNITED
+# Contar palavras por sentimento positivo por companhia
+contagem_sentimento_positivo_united_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "positive" & airline == "United") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento positivo por companhia
+wordcloud(
+  word = contagem_sentimento_positivo_united_nuvem$word, 
+  freq = contagem_sentimento_positivo_united_nuvem$n,
+  max.words = 50
+)
+
+# SOUTHWEST
+# Contar palavras por sentimento positivo por companhia
+contagem_sentimento_positivo_southwest_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "positive" & airline == "Southwest") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento positivo por companhia
+wordcloud(
+  word = contagem_sentimento_positivo_southwest_nuvem$word, 
+  freq = contagem_sentimento_positivo_southwest_nuvem$n,
+  max.words = 50
+)
+
+# DELTA
+# Contar palavras por sentimento positivo por companhia
+contagem_sentimento_positivo_delta_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "positive" & airline == "Delta") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento positivo por companhia
+wordcloud(
+  word = contagem_sentimento_positivo_delta_nuvem$word, 
+  freq = contagem_sentimento_positivo_delta_nuvem$n,
+  max.words = 50
+)
+
+# US AIRWAYS
+# Contar palavras por sentimento positivo por companhia
+contagem_sentimento_positivo_usairways_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "positive" & airline == "US Airways") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento positivo por companhia
+wordcloud(
+  word = contagem_sentimento_positivo_usairways_nuvem$word, 
+  freq = contagem_sentimento_positivo_usairways_nuvem$n,
+  max.words = 50
+)
+
+# AMERICAN
+# Contar palavras por sentimento positivo por companhia
+contagem_sentimento_positivo_american_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "positive" & airline == "American") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento positivo por companhia
+wordcloud(
+  word = contagem_sentimento_positivo_usairways_nuvem$word, 
+  freq = contagem_sentimento_positivo_usairways_nuvem$n,
+  max.words = 50
 )
 
 # Contar palavras por sentimento negativo por companhia
@@ -193,9 +308,105 @@ ggplot(contagem_sentimento_negativo_airline, aes(x = word2, y = n, fill = airlin
     y = "Contagem"
   )
 
-# Nuvem de palavras de sentimento negativo por companhia
+# VIRGIN AMERICA
+# Contar palavras por sentimento negativo
+contagem_sentimento_negativo_virgin_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "negative" & airline == "Virgin America") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento negativo
 wordcloud(
-  word = contagem_sentimento_negativo_airline$word, 
-  freq = contagem_sentimento_negativo_airline$n,
-  max.words = 100
+  word = contagem_sentimento_negativo_virgin_nuvem$word, 
+  freq = contagem_sentimento_negativo_virgin_nuvem$n,
+  max.words = 50
 )
+
+# UNITED
+# Contar palavras por sentimento negativo
+contagem_sentimento_negativo_united_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "negative" & airline == "United") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento negativo
+wordcloud(
+  word = contagem_sentimento_negativo_united_nuvem$word, 
+  freq = contagem_sentimento_negativo_united_nuvem$n,
+  max.words = 50
+)
+
+# SOUTHWEST
+# Contar palavras por sentimento negativo
+contagem_sentimento_negativo_southwest_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "negative" & airline == "Southwest") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento negativo
+wordcloud(
+  word = contagem_sentimento_negativo_southwest_nuvem$word, 
+  freq = contagem_sentimento_negativo_southwest_nuvem$n,
+  max.words = 50
+)
+
+# DELTA
+# Contar palavras por sentimento negativo
+contagem_sentimento_negativo_delta_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "negative" & airline == "Delta") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento negativo
+wordcloud(
+  word = contagem_sentimento_negativo_delta_nuvem$word, 
+  freq = contagem_sentimento_negativo_delta_nuvem$n,
+  max.words = 50
+)
+
+# US AIRWAYS
+# Contar palavras por sentimento negativo
+contagem_sentimento_negativo_usairways_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "negative" & airline == "US Airways") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento negativo
+wordcloud(
+  word = contagem_sentimento_negativo_usairways_nuvem$word, 
+  freq = contagem_sentimento_negativo_usairways_nuvem$n,
+  max.words = 50
+)
+
+# AMERICAN
+# Contar palavras por sentimento negativo
+contagem_sentimento_negativo_american_nuvem <- sentiment_tweets %>%
+  filter(sentiment == "negative" & airline == "American") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Nuvem de palavras de sentimento negativo
+wordcloud(
+  word = contagem_sentimento_negativo_american_nuvem$word, 
+  freq = contagem_sentimento_negativo_american_nuvem$n,
+  max.words = 50
+)
+
