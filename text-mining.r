@@ -18,6 +18,7 @@ library(wordcloud)
 library(forcats)
 library(tm)
 library(sna)
+library(igraph)
 
 
 # Leitura do Dados --------------------------------------------------------
@@ -112,6 +113,14 @@ contagem_sentimento <- sentiment_tweets %>%
   count(sentiment) %>% 
   arrange(desc(n))
 
+# Contagem de sentimentos por companhia
+contagem_sentimento <- sentiment_tweets %>% 
+  count(sentiment, airline) %>% 
+  arrange(desc(n))
+
+# Plot de sentimento por companhia
+ggplot(sentiment_tweets, aes(sentiment_tweets$airline, fill=sentiment)) + geom_bar()
+
 # Contagem de palavras por sentimento
 contagem_palavra_sentimento <- sentiment_tweets %>% 
   count(word, sentiment) %>%
@@ -155,6 +164,13 @@ ggplot(contagem_sentimento_positivo_airline, aes(x = word2, y = n, fill = airlin
     y = "Contagem"
   )
 
+# Nuvem de palavras de sentimento positivo por companhia
+wordcloud(
+  word = contagem_sentimento_positivo_airline$word, 
+  freq = contagem_sentimento_positivo_airline$n,
+  max.words = 100
+)
+
 # Contar palavras por sentimento negativo por companhia
 contagem_sentimento_negativo_airline <- sentiment_tweets %>%
   filter(sentiment == "negative") %>%
@@ -176,3 +192,10 @@ ggplot(contagem_sentimento_negativo_airline, aes(x = word2, y = n, fill = airlin
     x = "Palavras",
     y = "Contagem"
   )
+
+# Nuvem de palavras de sentimento negativo por companhia
+wordcloud(
+  word = contagem_sentimento_negativo_airline$word, 
+  freq = contagem_sentimento_negativo_airline$n,
+  max.words = 100
+)
