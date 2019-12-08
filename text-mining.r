@@ -31,6 +31,8 @@ tweets <- read.csv(paste(path,"tweets.csv",sep=""), sep=",",header = T,stringsAs
 
 # Análise Exploratória ----------------------------------------------------
 
+glimpse(tweets)
+head(tweets)
 summary(tweets)
 
 # Typecast dos tweets para character
