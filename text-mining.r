@@ -242,7 +242,7 @@ contagem_sentimento_positivo_dia_airline <- sentiment_tweets %>%
   group_by(airline, tweet_created) %>%
   count(tweet_created)
 
-# Plot de sentimento negativo por dia por companhia
+# Plot de sentimento positivo por dia por companhia
 ggplot(contagem_sentimento_positivo_dia_airline, aes(tweet_created, n, color=airline)) +
   geom_line() +
   labs(
@@ -253,7 +253,7 @@ ggplot(contagem_sentimento_positivo_dia_airline, aes(tweet_created, n, color=air
   )
 
 # Contagem de sentimentos por companhia
-contagem_sentimento <- sentiment_tweets %>% 
+contagem_sentimento_companhia <- sentiment_tweets %>% 
   count(sentiment, airline) %>% 
   arrange(desc(n))
 
@@ -300,6 +300,28 @@ ggplot(contagem_sentimento_positivo_airline, aes(x = word2, y = n, fill = airlin
   labs(
     title = "Contagem de Palavras",
     subtitle = "Contagem de Palavras de Sentimento Positivo por Companhia",
+    x = "Palavras",
+    y = "Contagem"
+  )
+
+# Contar palavras por sentimento negativo por companhia
+contagem_sentimento_negativo_airline <- sentiment_tweets %>%
+  filter(sentiment == "negative") %>%
+  count(word, airline) %>%
+  group_by(airline) %>%
+  arrange(desc(n)) %>%
+  top_n(10, n) %>%
+  ungroup() %>% 
+  mutate(word2 = fct_reorder(word, n))
+
+# Plot de contagem de palavras de sentimento negativo por companhia
+ggplot(contagem_sentimento_negativo_airline, aes(x = word2, y = n, fill = airline)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ airline, scales = "free_y") +
+  coord_flip() +
+  labs(
+    title = "Contagem de Palavras",
+    subtitle = "Contagem de Palavras de Sentimento Negativo por Companhia",
     x = "Palavras",
     y = "Contagem"
   )
@@ -405,28 +427,6 @@ wordcloud(
   freq = contagem_sentimento_positivo_usairways_nuvem$n,
   max.words = 50
 )
-
-# Contar palavras por sentimento negativo por companhia
-contagem_sentimento_negativo_airline <- sentiment_tweets %>%
-  filter(sentiment == "negative") %>%
-  count(word, airline) %>%
-  group_by(airline) %>%
-  arrange(desc(n)) %>%
-  top_n(10, n) %>%
-  ungroup() %>% 
-  mutate(word2 = fct_reorder(word, n))
-
-# Plot de contagem de palavras de sentimento negativo por companhia
-ggplot(contagem_sentimento_negativo_airline, aes(x = word2, y = n, fill = airline)) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~ airline, scales = "free_y") +
-  coord_flip() +
-  labs(
-    title = "Contagem de Palavras",
-    subtitle = "Contagem de Palavras de Sentimento Negativo por Companhia",
-    x = "Palavras",
-    y = "Contagem"
-  )
 
 # VIRGIN AMERICA
 # Contar palavras por sentimento negativo
@@ -599,3 +599,32 @@ degree(graph, v = V(graph)[1:6])
 betweenness(graph, v = V(graph)[1:6])
 closeness(graph, vids = V(graph)[1:6])
 
+# Palavras Negativas por companhia
+dtm_tweets <- sentiment_tweets %>%
+  filter(sentiment == "negative") %>% 
+  count(airline, word) %>% 
+  cast_dtm(word, airline, n)
+
+matrix_tweets <- as.matrix(dtm_tweets)
+
+# transforma a matriz em grafo no formato do igraph
+graph <- graph_from_incidence_matrix(matrix_tweets)
+
+# Plot da rede
+plot(graph, vertex.size=degree(graph, v = V(graph))/20, vertex.label.dist=2,
+     vertex.label = ifelse(degree(graph, v = V(graph)) > 10,V(graph)$name,NA), vertex.color="red", layout = layout_nicely(graph) )
+
+# Palavras Positivas por companhia
+dtm_tweets <- sentiment_tweets %>%
+  filter(sentiment == "positive") %>% 
+  count(airline, word) %>% 
+  cast_dtm(word, airline, n)
+
+matrix_tweets <- as.matrix(dtm_tweets)
+
+# transforma a matriz em grafo no formato do igraph
+graph <- graph_from_incidence_matrix(matrix_tweets)
+
+# Plot da rede
+plot(graph, vertex.size=degree(graph, v = V(graph))/20, vertex.label.dist=2,
+     vertex.label = ifelse(degree(graph, v = V(graph)) > 10,V(graph)$name,NA), vertex.color="red", layout = layout_nicely(graph) )
