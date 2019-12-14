@@ -66,7 +66,7 @@ ggplot(contagem_tweets_timezone, aes(x = user_timezone, n)) +
   labs(
     title = "Tweets por Timezone",
     subtitle = "Total de Tweets por Timezone",
-    x = "Companhias",
+    x = "Timezones",
     y = "Tweets"
   )
 
@@ -116,7 +116,9 @@ custom_stop_words <- tribble(
   "southwestair", "CUSTOM",
   "united", "CUSTOM",
   "usairways", "CUSTOM",
-  "virginamerica", "CUSTOM"
+  "virginamerica", "CUSTOM",
+  "amp","CUSTOM",
+  "ðÿ","CUSTOM"
 )
 
 stop_words2 <- stop_words %>% 
@@ -259,7 +261,13 @@ contagem_sentimento_companhia <- sentiment_tweets %>%
 
 # Plot de sentimento por companhia
 ggplot(sentiment_tweets, aes(sentiment_tweets$airline, fill=sentiment)) +
-  geom_bar()
+  geom_bar() +
+  labs(
+    title = "Contagem de Sentimentos por Companhia",
+    subtitle = "Contagem de Sentimentos Positivos e Negativos por Companhia",
+    x = "Companhias",
+    y = "Contagem"
+  )
 
 # Contagem de palavras por sentimento
 contagem_palavra_sentimento <- sentiment_tweets %>% 
