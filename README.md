@@ -9,7 +9,7 @@ A base que estamos analisando possui 14.640 tweets de passageiros de companhias 
 -	tweet_created – data e hora dos tweets que vão de 16/02/2015 há 24/02/2015
 -	user_timezone – timezone do tweet em questão
 
-Após a leitura da base, tratamos a variável text, transformando-as para caracteres e a variável tweet_created para data. Fizemos então contagens de tweets por companhia aérea, por timezone, por dia, que gerou os seguintes gráficos:
+Após a leitura da base, tratamos a variável text, transformando-a para caracteres e a variável tweet_created para data. Fizemos então contagens de tweets por companhia aérea, por timezone, por dia, que gerou os seguintes gráficos:
 
 ![Tweets por Companhia](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/tweets%20por%20companhia.png)
 
