@@ -21,6 +21,22 @@ Para uma melhor visualização dos tweets postados por companhia aérea, fizemos
 
 ![Tweets por Dia por Companhia](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/tweets%20por%20dia%20por%20companhia.png)
 
+## Análise das Palavras e Sentimentos
+
+Removendo as stop words para análise da base, vimos a necessidade de acrescentar outras stop words a lista como http, win, t.co, 2 entre outras, pois não adicionam significado à análise. Após fazer a tokenização e remover as stop words chegamos as seguintes palavras mais comentadas:
+
+![Contagem de Palavras](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/contagem%20de%20palavras.png)
+
+A palavra *flight* certamente é a mais utilizada pois os posts são comentários sobre os voos das empresas, já a palavra *JetBlue*, como podemos levantar, são relacionadas sempre a um voo da Delta, *cancelled* sobre cancelamentos de voos, *service* mencionando algum serviço, *time* falando sobre horário do voo, *customer* sobre os clientes, *hours* novamente relacionado a horário, *flights* sobre mais de um voo, *hold* no sentido de que houve uma espera, *plane* sobre a aeronave.
+
+Fazendo a contagem de palavras por companhia aérea, percebemos que a palavra *JetBlue* aparece somente na Delta Airlines, relatando sobre voos que essas companhias fazem em parceria, as palavras *flight* e *flights* se referem ou a reclamações ou elogios sobre os voos, assim como *service*, *time*, *hours*, que podem ser tanto reclamações como elogios, no entanto *cancelled* na American indica um descontentamento muito grande em relação a cancelamentos, *delayed* na Delta também indicando um grande descontentamento, *cancelled* na Southwest, US Airways e Virgin America. A única que aparece tanto a palavra *delayed* como *cancelled* nas 10 maiores ocorrências é a United, mostrando o descontentamento em relação a esses dois itens. Outra palavra que chama atenção é *gate*, indicando uma mudança de portão constante em seus voos, já a palavra *bag*, geralmente esta relacionada a extravio de bagagem. Portanto comparando as empresas analisadas, a United apresenta um maior grau de descontentamento que as demais empresas.
+
+![Contagem de Palavras por Companhia](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/contagem%20de%20palavras%20por%20companhia.png)
+
+No gráfico abaixo podemos observar a nuvem de palavras mencionadas acima de acordo com sua importância:
+
+![Nuvem de Palavras](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/nuvem%20de%20palavras.png)
+
 WORK IN PROGRESS...
 
 ## Authors
