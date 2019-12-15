@@ -37,6 +37,28 @@ No gráfico abaixo podemos observar a nuvem de palavras mencionadas acima de aco
 
 ![Nuvem de Palavras](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/nuvem%20de%20palavras.png)
 
+Analisando o gráfico de sentimentos negativos por dia, podemos perceber um aumento significativo de sentimentos negativos do dia 21 ao dia 23, indicando que houve muitos problemas durante esse período.
+
+![Sentimentos Negativos por Dia](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/sentimento%20negativo%20por%20dia.png)
+
+Porém ao analisarmos o gráfico dos sentimentos positivos, podemos constatar que o aumento do sentimento positivo se comporta da mesma forma que os negativos, e pela figura acima, constatamos um aumento muito grande nos tweets nesse período, não indicando uma tendência positiva ou negativa, apenas um aumento no número de tweets.
+
+![Sentimentos Positivos por Dia](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/sentimento%20positivo%20por%20dia.png)
+
+No gráficos de sentimentos positivos e negativos por empresa podemos novamente constatar o aumento de tweets em praticamente todas as empresas, exceto Southwest e Virgin America com volumes muito pequenos.
+
+![Sentimentos Negativos por Dia por Companhia](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/Sentimentos%20Negativos%20por%20Dia%20por%20Companhia.png)
+
+![Sentimentos Positivos por Dia por Companhia](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/Sentimentos%20Positivos%20por%20Dia%20por%20Companhia.png)
+
+Fazendo-se a análise de sentimentos por empresa, chegamos ao gráfico abaixo, que indica o constatado anteriormente, ou seja, a United possui um grau de insatisfação maior proporcionalmente as demais empresas.
+
+![Contagem de Sentimentos por Companhia](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/sentimento%20por%20companhia.png)
+
+No gráfico abaixo, podemos observar as palavras que são mais usadas positivamente e negativamente pelos passageiros, tais como *atrasado, perdido, pior, ruim, preso, perder, problema* aparecem como as principais negativas, e *amor, restituição, legal, de graça, útil, incrível, feliz, legal* e *leal* como palavras positivas.
+
+![Contagem de Palavras por Sentimento](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/contagem%20de%20palavras%20por%20sentimento.png)
+
 WORK IN PROGRESS...
 
 ## Authors
