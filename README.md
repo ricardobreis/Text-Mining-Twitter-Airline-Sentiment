@@ -131,11 +131,11 @@ E a rede por palavras positivas apresenta a seguinte configuração:
 
 ## Conclusão
 
-Pelo estudo acima das postagem dos passageiros através dos tweets podemos chegar a conclusão que o número de passageiros descontentes com o serviço prestado pela United é maior que a de seus concorrentes, e através do estudo de análise de sentimentos podemos detectar onde estão as principais reclamações, as que ocorrem com maior frequência e indicar onde a empresa deve aplicar seus recursos afim de melhorar sua imagem com os consumidores.
+Pelo estudo acima das postagem dos passageiros através dos tweets podemos chegar a conclusão que, para essa amostra, o número de passageiros descontentes com o serviço prestado pela United é maior que a de seus concorrentes, e através do estudo de análise de sentimentos podemos detectar onde estão as principais reclamações, as que ocorrem com maior frequência e indicar onde a empresa deve aplicar seus recursos afim de melhorar sua imagem com os consumidores.
 
-Vimos que a política de reembolso da United esta agregando bastante valor aos seus passageiros, que saem satisfeitos indicando que procurarão a companhia no futuro, portanto esse é uma política que deve ser mantido pela empresa, assim como a cordialidade de seus funcionários que também faz a empresa se sobressair sobre as demais.
+Vimos que a política de reembolso da United está agregando bastante valor aos seus passageiros, que saem satisfeitos indicando que procurarão a companhia no futuro, portanto esse é uma política que deve ser mantido pela empresa, assim como a cordialidade de seus funcionários que também faz a empresa se sobressair sobre as demais.
 
-Já no lado negativo, vimos que a empresa deve se empenhar e despender recursos para diminuir ao máximo os atrasos de voos que é o ponto que ela mais perde para seus concorrentes, assim como melhorar o método de transporte de bagagem pois ela costuma extraviar mais bagagem que os concorrentes. Trabalhando esses dois pontos a companhia diminuirá significativamente o número de passageiros descontentes que ela atualmente esta perdendo para seus concorrentes.
+Já no lado negativo, vimos que a empresa deve se empenhar e despender recursos para diminuir ao máximo os atrasos de voos que é o ponto que ela mais perde para seus concorrentes, assim como melhorar o método de transporte de bagagem pois ela costuma ter mais problemas com isso que os concorrentes. Trabalhando esses dois pontos a companhia diminuirá significativamente o número de passageiros descontentes que ela atualmente pode estar perdendo para seus concorrentes.
 
 ## Authors
 
