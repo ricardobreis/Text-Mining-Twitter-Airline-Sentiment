@@ -77,14 +77,33 @@ Positivas                  |  Negativas
 
 ### Delta
 
+Positivas                  |  Negativas
+:-------------------------:|:-------------------------:
+![Nuvem Positiva](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/DELTA%20-%20nuvem%20positiva.png) | ![Nuvem Negativa](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/DELTA%20-%20nuvem%20negativa.png)
+
 ### US Airways
+
+Positivas                  |  Negativas
+:-------------------------:|:-------------------------:
+![Nuvem Positiva](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/US%20AIRWAYS%20-%20nuvem%20positiva.png) | ![Nuvem Negativa](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/US%20AIRWAYS%20-%20nuvem%20negativa.png)
 
 ### American
 
+Positivas                  |  Negativas
+:-------------------------:|:-------------------------:
+![Nuvem Positiva](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/AMERICAN%20-%20nuvem%20positiva.png) | ![Nuvem Negativa](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/AMERICAN%20-%20nuvem%20negativa.png)
+
 ### Southwest
+
+Positivas                  |  Negativas
+:-------------------------:|:-------------------------:
+![Nuvem Positiva](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/SOUTHWEST%20-%20nuvem%20positiva.png) | ![Nuvem Negativa](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/SOUTHWEST%20-%20nuvem%20negativa.png)
 
 ### Virgin American
 
+Positivas                  |  Negativas
+:-------------------------:|:-------------------------:
+![Nuvem Positiva](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/VIRGIN%20-%20nuvem%20positiva.png) | ![Nuvem Negativa](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/VIRGIN%20-%20nuvem%20negativa.png)
 
 WORK IN PROGRESS...
 
