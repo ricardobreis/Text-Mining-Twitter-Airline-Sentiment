@@ -59,6 +59,33 @@ No gráfico abaixo, podemos observar as palavras que são mais usadas positivame
 
 ![Contagem de Palavras por Sentimento](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/contagem%20de%20palavras%20por%20sentimento.png)
 
+Na contagem de palavras positivas por companhia, podemos observar que a United ganha muitos pontos reembolsando os passageiros, porém isso significa que teve muitos voos cancelados, enquanto que nas concorrentes o número de elogios por reembolso não é tão grande, porém a palavra *love* aparece com bastante frequência, assim como *free*, *awesome* e *nice*.
+
+![Contagem de Palavras de Sentimento Positivo por Companhia](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/contagem%20de%20palavras%20de%20sentimento%20positivo%20por%20companhia.png)
+
+Como podemos observar, na contagem de palavras negativas por companhia, as palavras *delay* e *delayed* tem uma incidência grande, indicando descontentamento com atrasos por parte dos passageiros, já a palavra *worst* indica uma insatisfação maior que o aceitável juntamente com a palavra *lost* indicando perda de bagagem. Na concorrência os atrasos também são o maior ponto de descontentamento, porém possui um grau de incidência menor que na United. Na American, Southwest e US Airways aparece a palavra *rude*, indicando que os funcionários são rudes com os passageiros.
+
+![Contagem de Palavras de Sentimento Negativos por Companhia](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/contagem%20de%20palavras%20de%20sentimento%20negativo%20por%20companhia.png)
+
+Nas nuvens de palavras abaixo fica mais fácil observar os pontos levantados acima, onde as palavras com maior incidência aparecem maiores indicando uma maior importância das mesmas.
+
+### United
+
+Positivas                  |  Negativas
+:-------------------------:|:-------------------------:
+![Nuvem Positiva](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/UNITED%20-%20nuvem%20positiva.png) | ![Nuvem Negativa](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/UNITED%20-%20nuvem%20negativa.png)
+
+### Delta
+
+### US Airways
+
+### American
+
+### Southwest
+
+### Virgin American
+
+
 WORK IN PROGRESS...
 
 ## Authors
