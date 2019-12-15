@@ -105,7 +105,37 @@ Positivas                  |  Negativas
 :-------------------------:|:-------------------------:
 ![Nuvem Positiva](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/VIRGIN%20-%20nuvem%20positiva.png) | ![Nuvem Negativa](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/VIRGIN%20-%20nuvem%20negativa.png)
 
-WORK IN PROGRESS...
+## Análise de Rede
+
+Para fazer a análise de rede construimos um DTM (Document Term Matrix) onde os nós representam tweets e companhias aéreas, para observarmos a relação entre ambos. Filtramos por time zone, onde a primeira rede criada foi de Sydney e para essa timezone a companhia Delta obteve o maior números de tweets como podemos observar no gráfico abaixo, gerando um degree de 78 para a Delta, 11 para a Virgin America, 8 United, 6 US Airways e 4 degrees para a American.
+
+![Sydney](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/SYDNEY%20-%20tweets%20por%20companhia.png)
+
+Adotamos o mesmo procedimento para as timezones Alaska e Amsterdam, chegando nos seguintes resultados:
+
+![Alaska](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/ALASKA%20-%20tweets%20por%20companhia.png)
+
+A rede do Alaska tem uma distribuição entre os nós mais homogênea não havendo concentração em apenas uma companhia.
+
+![Amsterdam](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/AMSTERDAM%20-%20tweets%20por%20companhia.png)
+
+Na timezone Amsterdam podemos ver novamente uma concentração na companhia United dessa vez, com o total de 46 degrees.
+
+Montando a rede filtrando por palavras negativas, chegamos aos seguintes resultados:
+
+![Rede de Palavras Negativas](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/Palavras%20Negativas%20por%20companhia.png)
+
+E a rede por palavras positivas apresenta a seguinte configuração:
+
+![Rede de Palavras Positivas](https://github.com/ricardobreis/Text-Mining-Twitter-Airline-Sentiment/blob/master/img/Palavras%20Positivas%20por%20companhia.png)
+
+## Conclusão
+
+Pelo estudo acima das postagem dos passageiros através dos tweets podemos chegar a conclusão que o número de passageiros descontentes com o serviço prestado pela United é maior que a de seus concorrentes, e através do estudo de análise de sentimentos podemos detectar onde estão as principais reclamações, as que ocorrem com maior frequência e indicar onde a empresa deve aplicar seus recursos afim de melhorar sua imagem com os consumidores.
+
+Vimos que a política de reembolso da United esta agregando bastante valor aos seus passageiros, que saem satisfeitos indicando que procurarão a companhia no futuro, portanto esse é uma política que deve ser mantido pela empresa, assim como a cordialidade de seus funcionários que também faz a empresa se sobressair sobre as demais.
+
+Já no lado negativo, vimos que a empresa deve se empenhar e despender recursos para diminuir ao máximo os atrasos de voos que é o ponto que ela mais perde para seus concorrentes, assim como melhorar o método de transporte de bagagem pois ela costuma extraviar mais bagagem que os concorrentes. Trabalhando esses dois pontos a companhia diminuirá significativamente o número de passageiros descontentes que ela atualmente esta perdendo para seus concorrentes.
 
 ## Authors
 
